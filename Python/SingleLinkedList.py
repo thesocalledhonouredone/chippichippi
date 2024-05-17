@@ -20,12 +20,19 @@ class SingleLinkedList:
         self.head = newNode
 
     def addLast(self, data):
-        pass
+        temp = self.head
+        while temp.next != None:
+            temp = temp.next
+        newNode = Node(data)
+        temp.next = newNode
 
+    def 
 
     
 
 a = SingleLinkedList(100)
 a.addStart(200)
 a.addStart(300)
+a.addLast(10)
+a.addLast(20)
 a.printList()
