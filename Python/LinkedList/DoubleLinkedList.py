@@ -10,17 +10,13 @@ class DoubleLinkedList:
         self.length = 1
 
     def checkEmpty(self) -> bool: # helper method check if the list is empty
-        if self.head is None:
-            return True
-        else:
-            return False
+        return self.head is None
     
     def addFirst(self, data) -> None: # method to add Node at start
+        newNode = Node(data)
         if self.checkEmpty():
-            self.head = Node(data)
+            self.head = newNode
         else:
-            # create new Node
-            newNode = Node(data)
             # make newNode next as head of list
             # make the head of the list as newNode
             newNode.next = self.head
@@ -29,17 +25,16 @@ class DoubleLinkedList:
             self.length += 1
     
     def addLast(self, data) -> None: # method to add Node at end
+        newNode = Node(data)
         if self.checkEmpty():
-            self.head = Node(data)
+            self.head = newNode
         else:
             temp = self.head
             # traverse the list until last Node of list
             while temp.next != None:
                 temp = temp.next
-            # create newNode
             # set newNode prev as last node of list
             # set last node of list next as newNode
-            newNode = Node(data)
             newNode.prev = temp
             temp.next = newNode
 
@@ -88,15 +83,13 @@ class DoubleLinkedList:
             print("LIST IS EMPTY")
         else:
             temp = self.head
-            # create a 'shadow' to keep track of second-last Node
-            shadow = None
-            # traverse until last Node
+            # traverse till the last node
             while temp.next != None:
-                # shadow will hold the Node of 'temp' before the update
-                shadow = temp
-                # update temp
                 temp = temp.next
-            shadow.next = None
+            # do not need 'shadow' as we have 'prev'
+            # update the 'next' of previous node to None
+            temp.prev.next = None
+            # delete last Node
             del temp
             
     def searchList(self, target) -> bool: # method to check if target is present in the list
@@ -158,3 +151,15 @@ class DoubleLinkedList:
             print("LIST IS ALREADY CLEAR")
         else:
             self.head = None
+            self.length = 0
+
+dll = DoubleLinkedList(100)
+dll.addLast(200)
+dll.addLast(200)
+dll.addLast(200)
+
+dll.deleteLast()
+
+dll.printForward()
+print()
+dll.printBackward()

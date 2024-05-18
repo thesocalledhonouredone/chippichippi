@@ -9,10 +9,7 @@ class SingleLinkedList:
         self.length = 1
         
     def checkEmpty(self) -> bool: #helper function to check if list is empty
-        if self.head == None:
-            return True
-        else:
-            False
+        return self.head is None 
     
     def printList(self) -> None: #function to print the list
         if self.checkEmpty():
@@ -25,23 +22,27 @@ class SingleLinkedList:
             print("END OF LIST")
 
     def addFirst(self, data) -> None: #function to add Node at the stat of the list
+        newNode = Node(data)
         if self.checkEmpty():
-            self.head = Node(data)
+            self.head = newNode
         else:
-            newNode = Node(data)
+            # set newNode 'next' to head
+            # update 'head' to newNode
             newNode.next = self.head
             self.head = newNode
             
             self.length += 1
 
     def addLast(self, data) -> None: #function to add Node at the end of the list
+        newNode = Node(data)
         if self.checkEmpty():
-            self.head = Node(data)
+            self.head = newNode
         else:
             temp = self.head
+            # traverse till last node
             while temp.next != None:
                 temp = temp.next
-            newNode = Node(data)
+            # set last node 'next' as newNode
             temp.next = newNode
             
             self.length += 1
@@ -51,7 +52,9 @@ class SingleLinkedList:
             print("THE LIST IS EMPTY")
         else:
             temp = self.head
+            # update head to next node
             self.head = temp.next
+            # delete starting node
             del temp
 
             self.length -= 1
@@ -61,11 +64,16 @@ class SingleLinkedList:
             print("THE LIST IS EMPTY")
         else:
             temp = self.head
+            # shadow to keep track of previous node
             shadow = None
             while temp.next != None:
+                # shadow holds node before update
                 shadow = temp
+                # update to next node
                 temp = temp.next
+            # set second last node 'next' as None
             shadow.next = None
+            # delete last node
             del temp
 
             self.length -= 1
@@ -77,11 +85,12 @@ class SingleLinkedList:
             temp = self.head
             while temp.next != None:
                 temp = temp.next
+            # set last node 'next' to list to be joined 'head'
             temp.next = list.head
-
+            # update length of list
             self.length += list.length
 
-    def searchList(self, target) -> bool: # method to return if 'target' in present in the list
+    def searchList(self, target) -> bool: # method to return if 'target' is present in the list
         if self.checkEmpty():
             print("LIST IS EMPTY")
         else:
@@ -126,3 +135,4 @@ class SingleLinkedList:
             print("LIST IS ALREADY CLEAR")
         else:
             self.head = None
+            self.length = 0
