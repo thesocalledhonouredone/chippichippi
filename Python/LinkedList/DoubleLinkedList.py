@@ -152,14 +152,3 @@ class DoubleLinkedList:
         else:
             self.head = None
             self.length = 0
-
-dll = DoubleLinkedList(100)
-dll.addLast(200)
-dll.addLast(200)
-dll.addLast(200)
-
-dll.deleteLast()
-
-dll.printForward()
-print()
-dll.printBackward()
