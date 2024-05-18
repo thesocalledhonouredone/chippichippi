@@ -26,7 +26,7 @@ class SingleLinkedList:
 
     def addFirst(self, data) -> None: #function to add Node at the stat of the list
         if self.checkEmpty():
-            print("THE LIST IS EMPTY")
+            self.head = Node(data)
         else:
             newNode = Node(data)
             newNode.next = self.head
@@ -36,7 +36,7 @@ class SingleLinkedList:
 
     def addLast(self, data) -> None: #function to add Node at the end of the list
         if self.checkEmpty():
-            print("THE LIST IS EMPTY")
+            self.head = Node(data)
         else:
             temp = self.head
             while temp.next != None:
@@ -79,4 +79,50 @@ class SingleLinkedList:
                 temp = temp.next
             temp.next = list.head
 
-            self.length += list.lenght
+            self.length += list.length
+
+    def searchList(self, target) -> bool: # method to return if 'target' in present in the list
+        if self.checkEmpty():
+            print("LIST IS EMPTY")
+        else:
+            temp = self.head
+            while temp != None:
+                if temp.data == target:
+                    return True
+                temp = temp.next
+            return False
+    
+    def get(self, index) -> int: # method to return data at 'index' in list
+        if self.checkEmpty():
+            print("LIST IS EMPTY")
+        else:
+            if index >= self.length:
+                return None
+            else:
+                temp = self.head
+                num = 0
+                while temp != None:
+                    if num == index:
+                        return temp.data
+                    num += 1
+                    temp = temp.next
+                return None
+
+    def indexOf(self, target) -> int: # method to return index of 'target'
+        if self.checkEmpty():
+            print("LIST IS EMPTY")
+        else:
+            temp = self.head
+            index = 0
+            while temp != None:
+                if temp.data == target:
+                    return index
+                index += 1
+                temp = temp.next
+            return None
+                
+    def clearList(self) -> None:
+        if self.checkEmpty():
+            print("LIST IS ALREADY CLEAR")
+        else:
+            self.head = None
