@@ -17,7 +17,7 @@ void addLast(Node** head, int data);
 void addFirst(Node** head, int data);
 void deleteLast(Node** head);
 void deleteFirst(Node** head);
-void lenghtList(Node** head);
+void lengthList(Node** head);
 void joinList(Node** list1, Node** list2);
 
 int main() {
@@ -121,7 +121,7 @@ void deleteFirst(Node** head) { // function to delete first Node in list
         printf("UN-initilized liked list\n");
 }
 
-void lenghtList(Node** head) { // function to find length of list
+void lengthList(Node** head) { // function to find length of list
     Node* temp = *head;
     if(!checkNULL(temp)) {
         int len = 0;
